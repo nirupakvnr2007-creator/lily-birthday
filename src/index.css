@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-hand: "Caveat", cursive;
+
+  --color-blush: #FCE7F0;
+  --color-rose: #E8C2D4;
+  --color-cream: #FFF6EF;
+  --color-lavender: #DCCEF4;
+  --color-beige: #E7D9C8;
+  --color-plum: #9C6580;
+  --color-ink: #3B1E2D;
+  --color-ink-muted: #6E4A5D;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #FFF6EF;
+    color: #3B1E2D;
+    font-family: var(--font-sans);
+  }
+
+  body {
+    overflow-x: hidden;
+    background-color: #FFF6EF;
+    color: #3B1E2D;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-serif);
+    text-wrap: balance;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Subtle scrapbook paper texture */
+.paper-grain {
+  background-image:
+    radial-gradient(rgba(156, 101, 128, 0.05) 1px, transparent 0),
+    radial-gradient(rgba(220, 206, 244, 0.08) 1px, transparent 0);
+  background-size: 28px 28px;
+  background-position: 0 0, 14px 14px;
+}
+
+/* 3D card flip helpers */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Gentle ambient float animation (compositor-only) */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) rotate(2deg);
+  }
+}
+
+@keyframes twinkleSoft {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes candleFlicker {
+  0%, 100% {
+    transform: scaleY(1) scaleX(1) rotate(-1deg);
+    opacity: 0.95;
+  }
+  50% {
+    transform: scaleY(1.08) scaleX(0.94) rotate(2deg);
+    opacity: 1;
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-twinkle-soft {
+  animation: twinkleSoft 3.8s ease-in-out infinite;
+}
+
+.animate-candle-flicker {
+  animation: candleFlicker 1.4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
