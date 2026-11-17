@@ -7,6 +7,7 @@ interface ConversationCornerProps {
   disclaimer: string;
   contactName: string;
   contactSubtitle: string;
+  stageNote?: string;
   initialMessages: ChatMessage[];
   replyOptions: ChatReplyOption[];
 }
@@ -16,6 +17,7 @@ export function ConversationCorner({
   disclaimer,
   contactName,
   contactSubtitle,
+  stageNote,
   initialMessages,
   replyOptions,
 }: ConversationCornerProps) {
@@ -31,13 +33,13 @@ export function ConversationCorner({
         id: `lily-${option.id}`,
         sender: 'lily',
         text: option.lilyText,
-        timeLabel: 'Lily',
+        timeLabel: 'Rithika',
       },
       {
         id: `friend-${option.id}`,
         sender: 'friend',
         text: option.friendResponse,
-        timeLabel: 'Just now',
+        timeLabel: 'Nirupa',
       },
     ]);
   };
@@ -66,11 +68,11 @@ export function ConversationCorner({
           <div className="flex items-center justify-between border-b border-[#E8C2D4]/70 bg-[#FCE7F0] px-5 py-3.5">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#9C6580] font-serif text-lg font-semibold text-white">
-                L
+                R
               </div>
               <div>
                 <h3 className="font-sans text-sm font-semibold text-[#3B1E2D]">
-                  {contactName} &amp; Her School Friend
+                  Nirupa &amp; {contactName}
                 </h3>
                 <p className="text-xs text-[#6E4A5D]">{contactSubtitle}</p>
               </div>
@@ -88,24 +90,28 @@ export function ConversationCorner({
 
           {/* Chat messages */}
           <div className="space-y-3.5 bg-[#FFF6EF]/70 p-5 sm:p-6">
-            {messages.map((msg) => {
+            {messages.map((msg, idx) => {
               const isFriend = msg.sender === 'friend';
               return (
-                <div
-                  key={msg.id}
-                  className={`flex flex-col ${isFriend ? 'items-start' : 'items-end'}`}
-                >
-                  <div
-                    className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed sm:max-w-[75%] ${
-                      isFriend
-                        ? 'rounded-tl-xs border border-[#E8C2D4]/80 bg-white text-[#3B1E2D]'
-                        : 'rounded-tr-xs bg-[#9C6580] text-white'
-                    }`}
-                  >
-                    <p>{msg.text}</p>
+                <React.Fragment key={msg.id}>
+                  <div className={`flex flex-col ${isFriend ? 'items-start' : 'items-end'}`}>
+                    <div
+                      className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed sm:max-w-[75%] ${
+                        isFriend
+                          ? 'rounded-tl-xs border border-[#E8C2D4]/80 bg-white text-[#3B1E2D]'
+                          : 'rounded-tr-xs bg-[#9C6580] text-white'
+                      }`}
+                    >
+                      <p>{msg.text}</p>
+                    </div>
+                    <span className="mt-1 px-1 text-[11px] text-[#6E4A5D]">{msg.timeLabel}</span>
                   </div>
-                  <span className="mt-1 px-1 text-[11px] text-[#6E4A5D]">{msg.timeLabel}</span>
-                </div>
+                  {stageNote && idx === initialMessages.length - 1 && (
+                    <p className="py-1 text-center font-serif text-sm italic text-[#9C6580]">
+                      {stageNote}
+                    </p>
+                  )}
+                </React.Fragment>
               );
             })}
           </div>

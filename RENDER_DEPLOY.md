@@ -5,7 +5,8 @@ This project is preconfigured for one-click deployment to [Render](https://rende
 ## 1. Before You Deploy (Optional Personalization)
 
 - **Add Your Photograph**: Create a `private-assets` folder in the project root and place your photo inside it as `private-assets/photo.jpg` (also supports `.jpeg`, `.png`, or `.webp`). It is served strictly behind Lily's birthday-date authentication (`/api/media/photo`), never exposed publicly.
-- **Customize Your Letter**: Open `server/content.ts` if you want to paste your exact verbatim paragraphs into the 7 chapters of `letter.chapters` or tweak the Polaroid story.
+- **Add Your Soundtrack MP3s**: Optionally place `hard-for-me.mp3`, `beautiful.mp3`, and `watch-me-burn.mp3` inside `private-assets/audio/` so the player & cake-cutting moment stream your own audio files behind authentication (otherwise the built-in instrumental synthesizer plays cleanly).
+- **Customize Your Letter**: Open `server/content.ts` if you want to tweak any of the 7 chapters in `letter.chapters` or any scrapbook notes.
 
 ## 2. Deploy on Render
 

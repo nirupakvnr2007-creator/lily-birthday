@@ -52,6 +52,7 @@ export interface PlaylistTrack {
   caption: string;
   durationSec: number;
   mood: 'dreamy' | 'reflective' | 'warm' | 'celebration';
+  hasAudioFile?: boolean;
 }
 
 export interface UniverseMessage {
@@ -113,6 +114,7 @@ export interface ProtectedBirthdayContent {
     disclaimer: string;
     contactName: string;
     contactSubtitle: string;
+    stageNote?: string;
     messages: ChatMessage[];
     replyOptions: ChatReplyOption[];
   };

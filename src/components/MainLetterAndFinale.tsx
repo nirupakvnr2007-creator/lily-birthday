@@ -10,6 +10,7 @@ interface MainLetterAndFinaleProps {
   chapters: LetterChapter[];
   finale: FinaleData;
   polaroid: PolaroidData;
+  onCutCake: () => void;
   onRelock: () => void;
 }
 
@@ -19,6 +20,7 @@ export function MainLetterAndFinale({
   chapters,
   finale,
   polaroid,
+  onCutCake,
   onRelock,
 }: MainLetterAndFinaleProps) {
   const [activeChapterIdx, setActiveChapterIdx] = useState(0);
@@ -33,6 +35,9 @@ export function MainLetterAndFinale({
   const showRealPhoto = polaroid.hasPhoto && !imgError;
 
   const handleLightCandles = () => {
+    if (!candlesLit) {
+      onCutCake();
+    }
     setCandlesLit(true);
     setShowFinaleConfetti(true);
   };
@@ -199,8 +204,13 @@ export function MainLetterAndFinale({
               className="mt-4 inline-flex min-h-[44px] cursor-pointer items-center gap-2 rounded-xl border border-[#FCE7F0]/40 bg-[#9C6580] px-5 py-2.5 text-xs font-medium text-white transition-colors hover:bg-[#85526B]"
             >
               <Flame className="h-4 w-4 text-[#FDE68A]" aria-hidden="true" />
-              <span>{candlesLit ? 'Throw More Confetti' : 'Light the Birthday Candles'}</span>
+              <span>{candlesLit ? 'Throw More Confetti' : 'Light Candles & Cut Cake'}</span>
             </button>
+            {candlesLit && (
+              <p className="mt-3 text-xs text-[#E8C2D4]">
+                Playing in background: Hard For Me — Michele Morrone
+              </p>
+            )}
           </div>
 
           <h2 className="mt-10 font-serif text-4xl font-semibold text-[#FFF6EF] sm:text-5xl">

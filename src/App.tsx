@@ -26,6 +26,7 @@ export default function App() {
 
   // Music player state (never autoplays)
   const engineRef = useRef<SoftMusicEngine | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const [trackIndex, setTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [elapsedSec, setElapsedSec] = useState(0);
@@ -82,7 +83,14 @@ export default function App() {
   useEffect(() => {
     const engine = new SoftMusicEngine();
     engineRef.current = engine;
+    const audioEl = new Audio();
+    audioEl.preload = 'none';
+    audioRef.current = audioEl;
+
     return () => {
+      audioEl.pause();
+      audioEl.src = '';
+      audioRef.current = null;
       engine.destroy();
       engineRef.current = null;
     };
@@ -90,55 +98,92 @@ export default function App() {
 
   const tracks = content?.playlist.tracks ?? [];
 
+  const playTrackByIndex = useCallback(
+    (idx: number, resetPosition: boolean) => {
+      const track = tracks[idx];
+      const engine = engineRef.current;
+      const audioEl = audioRef.current;
+      if (!track || !engine || !audioEl) return;
+
+      engine.pause();
+      audioEl.pause();
+
+      if (track.hasAudioFile) {
+        const targetSrc = `/api/media/audio/${track.id}`;
+        if (!audioEl.src.endsWith(targetSrc)) {
+          audioEl.src = targetSrc;
+        }
+        if (resetPosition) {
+          audioEl.currentTime = 0;
+        }
+        audioEl.volume = volume;
+        void audioEl.play().catch(() => {
+          engine.setVolume(volume);
+          engine.play(track.id, resetPosition);
+        });
+      } else {
+        engine.setVolume(volume);
+        engine.play(track.id, resetPosition);
+      }
+      setIsPlaying(true);
+    },
+    [tracks, volume],
+  );
+
   const handleNextTrack = useCallback(() => {
     if (!tracks.length) return;
     const nextIdx = (trackIndex + 1) % tracks.length;
     setTrackIndex(nextIdx);
     setElapsedSec(0);
-    if (isPlaying && engineRef.current) {
-      engineRef.current.play(tracks[nextIdx].id, true);
+    if (isPlaying) {
+      playTrackByIndex(nextIdx, true);
     }
-  }, [isPlaying, trackIndex, tracks]);
+  }, [isPlaying, playTrackByIndex, trackIndex, tracks.length]);
 
   useEffect(() => {
     const engine = engineRef.current;
-    if (!engine) return;
-    engine.setCallbacks(
-      (sec) => setElapsedSec(sec),
-      () => {
-        if (!tracks.length) return;
-        const nextIdx = (trackIndex + 1) % tracks.length;
-        setTrackIndex(nextIdx);
-        setElapsedSec(0);
-        engine.play(tracks[nextIdx].id, true);
-      },
-    );
-  }, [trackIndex, tracks]);
+    const audioEl = audioRef.current;
+    if (!engine || !audioEl) return;
+
+    const advanceTrack = () => {
+      if (!tracks.length) return;
+      const nextIdx = (trackIndex + 1) % tracks.length;
+      setTrackIndex(nextIdx);
+      setElapsedSec(0);
+      playTrackByIndex(nextIdx, true);
+    };
+
+    engine.setCallbacks((sec) => setElapsedSec(sec), advanceTrack);
+
+    const onTimeUpdate = () => setElapsedSec(audioEl.currentTime);
+    const onEnded = () => advanceTrack();
+    audioEl.addEventListener('timeupdate', onTimeUpdate);
+    audioEl.addEventListener('ended', onEnded);
+    return () => {
+      audioEl.removeEventListener('timeupdate', onTimeUpdate);
+      audioEl.removeEventListener('ended', onEnded);
+    };
+  }, [playTrackByIndex, trackIndex, tracks.length]);
 
   const handleTogglePlay = () => {
     const engine = engineRef.current;
-    const track = tracks[trackIndex];
-    if (!engine || !track) return;
+    const audioEl = audioRef.current;
+    if (!engine || !audioEl || !tracks[trackIndex]) return;
 
     if (isPlaying) {
       engine.pause();
+      audioEl.pause();
       setIsPlaying(false);
     } else {
-      engine.setVolume(volume);
-      engine.play(track.id, false);
-      setIsPlaying(true);
+      playTrackByIndex(trackIndex, false);
     }
   };
 
   const handleSelectTrack = (idx: number) => {
-    const engine = engineRef.current;
-    const track = tracks[idx];
-    if (!engine || !track) return;
+    if (!tracks[idx]) return;
     setTrackIndex(idx);
     setElapsedSec(0);
-    engine.setVolume(volume);
-    engine.play(track.id, true);
-    setIsPlaying(true);
+    playTrackByIndex(idx, true);
   };
 
   const handlePrevTrack = () => {
@@ -146,23 +191,40 @@ export default function App() {
     const prevIdx = (trackIndex - 1 + tracks.length) % tracks.length;
     setTrackIndex(prevIdx);
     setElapsedSec(0);
-    if (isPlaying && engineRef.current) {
-      engineRef.current.play(tracks[prevIdx].id, true);
+    if (isPlaying) {
+      playTrackByIndex(prevIdx, true);
     }
   };
 
   const handleSeek = (sec: number) => {
     setElapsedSec(sec);
-    engineRef.current?.seek(sec);
+    const track = tracks[trackIndex];
+    if (track?.hasAudioFile && audioRef.current) {
+      audioRef.current.currentTime = sec;
+    } else {
+      engineRef.current?.seek(sec);
+    }
   };
 
   const handleVolumeChange = (nextVol: number) => {
     setVolume(nextVol);
     engineRef.current?.setVolume(nextVol);
+    if (audioRef.current) {
+      audioRef.current.volume = nextVol;
+    }
+  };
+
+  const handleCutCake = () => {
+    // Play Track 1 ("Hard For Me" – Michele Morrone) when the cake is cut
+    if (!tracks.length) return;
+    setTrackIndex(0);
+    setElapsedSec(0);
+    playTrackByIndex(0, true);
   };
 
   const handleRelock = async () => {
     engineRef.current?.pause();
+    audioRef.current?.pause();
     setIsPlaying(false);
     setContent(null);
     await fetch('/api/auth/lock', { method: 'POST', credentials: 'same-origin' });
@@ -232,6 +294,7 @@ export default function App() {
           disclaimer={content.conversation.disclaimer}
           contactName={content.conversation.contactName}
           contactSubtitle={content.conversation.contactSubtitle}
+          stageNote={content.conversation.stageNote}
           initialMessages={content.conversation.messages}
           replyOptions={content.conversation.replyOptions}
         />
@@ -280,6 +343,7 @@ export default function App() {
           chapters={content.letter.chapters}
           finale={content.finale}
           polaroid={content.polaroid}
+          onCutCake={handleCutCake}
           onRelock={() => void handleRelock()}
         />
       </main>
