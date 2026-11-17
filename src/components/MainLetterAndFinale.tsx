@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
-import { ArrowLeft, ArrowRight, Camera, Flame, Heart, Lock, Sparkles, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Flame, Heart, Lock, Sparkles, X } from 'lucide-react';
 import { motion } from 'motion/react';
-import type { FinaleData, LetterChapter, PolaroidData } from '../types/birthday.ts';
-import { BirthdayCakeIllustration, BotanicalSprig, ConfettiBurst, CoquetteBow } from './Decorations.tsx';
+import type { FinaleData, LetterChapter } from '../types/birthday.ts';
+import {
+  BirthdayCakeIllustration,
+  BotanicalSprig,
+  ConfettiBurst,
+  CoquetteBow,
+  WaxSealBadge,
+} from './Decorations.tsx';
 
 interface MainLetterAndFinaleProps {
   letterTitle: string;
   letterSubtitle: string;
   chapters: LetterChapter[];
   finale: FinaleData;
-  polaroid: PolaroidData;
   onCutCake: () => void;
   onRelock: () => void;
 }
@@ -19,27 +24,24 @@ export function MainLetterAndFinale({
   letterSubtitle,
   chapters,
   finale,
-  polaroid,
   onCutCake,
   onRelock,
 }: MainLetterAndFinaleProps) {
   const [activeChapterIdx, setActiveChapterIdx] = useState(0);
   const [candlesLit, setCandlesLit] = useState(false);
-  const [showFinaleConfetti, setShowFinaleConfetti] = useState(false);
+  const [finaleConfettiCount, setFinaleConfettiCount] = useState(0);
   const [showOneMoreThing, setShowOneMoreThing] = useState(false);
-  const [imgError, setImgError] = useState(false);
 
   const chapter = chapters[activeChapterIdx] || chapters[0];
   const isFirst = activeChapterIdx === 0;
   const isLast = activeChapterIdx === chapters.length - 1;
-  const showRealPhoto = polaroid.hasPhoto && !imgError;
 
   const handleLightCandles = () => {
     if (!candlesLit) {
       onCutCake();
     }
     setCandlesLit(true);
-    setShowFinaleConfetti(true);
+    setFinaleConfettiCount((c) => c + 1);
   };
 
   return (
@@ -168,7 +170,7 @@ export function MainLetterAndFinale({
         id="final-surprise"
         className="relative overflow-hidden bg-gradient-to-b from-[#3B1E2D] via-[#532B45] to-[#23132B] px-4 py-20 text-[#FFF6EF] sm:px-6 sm:py-28"
       >
-        <ConfettiBurst active={showFinaleConfetti} />
+        <ConfettiBurst active={finaleConfettiCount > 0} burstKey={finaleConfettiCount} />
 
         {/* Subtle twinkling stars */}
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -275,33 +277,19 @@ export function MainLetterAndFinale({
               <X className="h-4 w-4" />
             </button>
 
-            <CoquetteBow className="mx-auto mb-3 h-7 w-12" />
+            <CoquetteBow className="mx-auto mb-3 h-8 w-14" />
 
-            <div className="mx-auto aspect-[4/4] max-w-[240px] overflow-hidden rounded-sm border border-[#E7D9C8] bg-white p-3 pb-5 shadow-sm">
-              <div className="h-full w-full overflow-hidden bg-[#FCE7F0]/60">
-                {showRealPhoto ? (
-                  <img
-                    src="/api/media/photo"
-                    alt="Final keepsake photograph"
-                    referrerPolicy="no-referrer"
-                    onError={() => setImgError(true)}
-                    className="h-full w-full object-cover"
-                  />
-                ) : (
-                  <div className="flex h-full w-full flex-col items-center justify-center p-4 text-center">
-                    <BotanicalSprig className="h-10 w-10" />
-                    <Camera className="mt-1 h-7 w-7 text-[#9C6580]" aria-hidden="true" />
-                    <p className="mt-2 font-serif text-base font-semibold text-[#3B1E2D]">
-                      Our Keepsake Frame
-                    </p>
-                  </div>
-                )}
-              </div>
+            <div className="relative mx-auto flex flex-col items-center rounded-xl border border-[#E8C2D4] bg-[#FFFDF9] p-6 shadow-xs">
+              <BotanicalSprig className="absolute top-2 left-2 h-8 w-8 opacity-75" />
+              <BotanicalSprig className="absolute right-2 bottom-2 h-8 w-8 rotate-180 opacity-75" />
+              <WaxSealBadge className="mb-4 h-14 w-14" />
+              <p className="font-serif text-xl leading-relaxed text-[#3B1E2D]">
+                &ldquo;{finale.oneMoreThingText}&rdquo;
+              </p>
+              <p className="mt-4 font-hand text-2xl text-[#9C6580]">
+                Happy 20th Birthday, Rithika
+              </p>
             </div>
-
-            <p className="mt-5 font-serif text-xl leading-relaxed text-[#3B1E2D]">
-              &ldquo;{finale.oneMoreThingText}&rdquo;
-            </p>
           </div>
         </div>
       )}

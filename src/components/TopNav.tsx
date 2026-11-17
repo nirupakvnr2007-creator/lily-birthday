@@ -8,8 +8,8 @@ interface TopNavProps {
 
 const NAV_LINKS = [
   { href: '#our-story', label: 'Our Story' },
-  { href: '#our-memories', label: 'Our Memories' },
-  { href: '#little-surprises', label: 'Little Surprises' },
+  { href: '#little-surprises', label: 'Awards' },
+  { href: '#time-capsule', label: 'Time Capsule' },
   { href: '#birthday-letter', label: 'Birthday Letter' },
   { href: '#final-surprise', label: 'Final Surprise' },
 ];

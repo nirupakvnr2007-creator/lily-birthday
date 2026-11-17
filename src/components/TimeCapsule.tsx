@@ -13,7 +13,10 @@ export function TimeCapsule({ title, salutation, paragraphs, signOff }: TimeCaps
   const [opened, setOpened] = useState(false);
 
   return (
-    <section className="border-b border-[#E8C2D4]/60 bg-[#FFF6EF] px-4 py-16 sm:px-6 sm:py-24">
+    <section
+      id="time-capsule"
+      className="border-b border-[#E8C2D4]/60 bg-[#FFF6EF] px-4 py-16 sm:px-6 sm:py-24"
+    >
       <div className="mx-auto max-w-3xl">
         <div className="text-center">
           <p className="text-xs font-medium tracking-widest text-[#9C6580] uppercase">

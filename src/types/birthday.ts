@@ -7,15 +7,6 @@ export interface TimelineChapter {
   motif: 'microphone' | 'desk' | 'books' | 'spark' | 'philosophy' | 'stars' | 'coincidence' | 'temple' | 'horizon';
 }
 
-export interface PolaroidData {
-  title: string;
-  caption: string;
-  storyTitle: string;
-  storyText: string;
-  dateNote: string;
-  hasPhoto: boolean;
-}
-
 export interface FriendshipAward {
   id: number;
   title: string;
@@ -107,7 +98,6 @@ export interface ProtectedBirthdayContent {
   heroSubheading: string;
   giftMessage: string;
   timeline: TimelineChapter[];
-  polaroid: PolaroidData;
   awards: FriendshipAward[];
   conversation: {
     title: string;

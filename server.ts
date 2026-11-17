@@ -21,30 +21,6 @@ import { getProtectedContent } from './server/content.ts';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PRIVATE_PHOTO_CANDIDATES = [
-  'photo.jpg',
-  'photo.jpeg',
-  'photo.png',
-  'photo.webp',
-  'memory-photo.jpg',
-  'memory-photo.png',
-  'memory-photo.webp',
-];
-
-function findPrivatePhotoPath(): string | null {
-  const privateDir = path.resolve(__dirname, 'private-assets');
-  if (!fs.existsSync(privateDir)) {
-    return null;
-  }
-  for (const filename of PRIVATE_PHOTO_CANDIDATES) {
-    const candidate = path.join(privateDir, filename);
-    if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
-      return candidate;
-    }
-  }
-  return null;
-}
-
 const TRACK_AUDIO_FILES: Record<string, string[]> = {
   t1: ['hard-for-me.mp3', 'hard-for-me.m4a', 'hard-for-me.ogg', 'hard-for-me.wav'],
   t2: ['beautiful.mp3', 'beautiful.m4a', 'beautiful.ogg', 'beautiful.wav'],
@@ -170,19 +146,8 @@ async function startServer(): Promise<void> {
 
 
   app.get('/api/content', requireAuth, (_req, res) => {
-    const hasPhoto = findPrivatePhotoPath() !== null;
     res.setHeader('Cache-Control', 'no-store');
-    res.json(getProtectedContent(hasPhoto, getAudioAvailability()));
-  });
-
-  app.get('/api/media/photo', requireAuth, (_req, res) => {
-    const photoPath = findPrivatePhotoPath();
-    if (!photoPath) {
-      res.status(404).json({ hasPhoto: false });
-      return;
-    }
-    res.setHeader('Cache-Control', 'private, no-store');
-    res.sendFile(photoPath);
+    res.json(getProtectedContent(getAudioAvailability()));
   });
 
   app.get('/api/media/audio/:trackId', requireAuth, (req, res) => {

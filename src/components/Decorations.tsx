@@ -265,33 +265,54 @@ export function AmbientFloaters({ dark = false }: { dark?: boolean }) {
   );
 }
 
-export function ConfettiBurst({ active }: { active: boolean }) {
+export function ConfettiBurst({
+  active,
+  burstKey = 0,
+}: {
+  active: boolean;
+  burstKey?: number;
+}) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
     if (!active) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const updateSize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    updateSize();
 
-    const colors = ['#FCE7F0', '#E8C2D4', '#DCCEF4', '#9C6580', '#FDE68A', '#FFF6EF'];
-    const pieces = Array.from({ length: 80 }, () => ({
-      x: canvas.width * (0.2 + Math.random() * 0.6),
-      y: canvas.height * 0.42,
-      vx: (Math.random() - 0.5) * 11,
-      vy: -Math.random() * 10 - 3,
-      size: 5 + Math.random() * 6,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      rotation: Math.random() * Math.PI * 2,
-      vRot: (Math.random() - 0.5) * 0.22,
-      alpha: 1,
-    }));
+    const colors = [
+      '#9C6580',
+      '#D9468F',
+      '#8B5CF6',
+      '#F59E0B',
+      '#EC4899',
+      '#FB7185',
+      '#6366F1',
+      '#F43F5E',
+    ];
+    const pieces = Array.from({ length: 110 }, (_, idx) => {
+      const fromTop = idx % 3 === 0;
+      return {
+        x: canvas.width * (0.1 + Math.random() * 0.8),
+        y: fromTop ? -10 - Math.random() * 40 : canvas.height * (0.3 + Math.random() * 0.2),
+        vx: (Math.random() - 0.5) * 14,
+        vy: fromTop ? 2 + Math.random() * 5 : -Math.random() * 12 - 4,
+        size: 7 + Math.random() * 7,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        rotation: Math.random() * Math.PI * 2,
+        vRot: (Math.random() - 0.5) * 0.25,
+        alpha: 1,
+        isCircle: idx % 4 === 0,
+      };
+    });
 
     let frameId = 0;
     const render = () => {
@@ -300,18 +321,24 @@ export function ConfettiBurst({ active }: { active: boolean }) {
       for (const p of pieces) {
         p.x += p.vx;
         p.y += p.vy;
-        p.vy += 0.24;
+        p.vy += 0.25;
         p.vx *= 0.99;
         p.rotation += p.vRot;
-        p.alpha -= 0.0085;
-        if (p.alpha > 0 && p.y < canvas.height + 20) {
+        p.alpha -= 0.0075;
+        if (p.alpha > 0 && p.y < canvas.height + 30) {
           alive = true;
           ctx.save();
           ctx.globalAlpha = Math.max(0, p.alpha);
           ctx.translate(p.x, p.y);
           ctx.rotate(p.rotation);
           ctx.fillStyle = p.color;
-          ctx.fillRect(-p.size / 2, -p.size / 3, p.size, p.size * 0.66);
+          if (p.isCircle) {
+            ctx.beginPath();
+            ctx.arc(0, 0, p.size * 0.45, 0, Math.PI * 2);
+            ctx.fill();
+          } else {
+            ctx.fillRect(-p.size / 2, -p.size / 3, p.size, p.size * 0.66);
+          }
           ctx.restore();
         }
       }
@@ -323,8 +350,11 @@ export function ConfettiBurst({ active }: { active: boolean }) {
     };
 
     frameId = requestAnimationFrame(render);
-    return () => cancelAnimationFrame(frameId);
-  }, [active]);
+    return () => {
+      cancelAnimationFrame(frameId);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    };
+  }, [active, burstKey]);
 
   if (!active) return null;
 

@@ -10,7 +10,6 @@ import { HeroSection } from './components/HeroSection.tsx';
 import { LilysUniverse } from './components/LilysUniverse.tsx';
 import { LockScreen } from './components/LockScreen.tsx';
 import { MainLetterAndFinale } from './components/MainLetterAndFinale.tsx';
-import { PolaroidMuseum } from './components/PolaroidMuseum.tsx';
 import { TimeCapsule } from './components/TimeCapsule.tsx';
 import { TopNav } from './components/TopNav.tsx';
 import type { ProtectedBirthdayContent } from './types/birthday.ts';
@@ -285,8 +284,6 @@ export default function App() {
 
         <FriendshipTimeline chapters={content.timeline} />
 
-        <PolaroidMuseum polaroid={content.polaroid} />
-
         <FriendshipAwards awards={content.awards} />
 
         <ConversationCorner
@@ -342,7 +339,6 @@ export default function App() {
           letterSubtitle={content.letter.subtitle}
           chapters={content.letter.chapters}
           finale={content.finale}
-          polaroid={content.polaroid}
           onCutCake={handleCutCake}
           onRelock={() => void handleRelock()}
         />

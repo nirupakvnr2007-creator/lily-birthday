@@ -1,14 +1,13 @@
 import type { ProtectedBirthdayContent } from '../src/types/birthday.ts';
 
 export function getProtectedContent(
-  hasPhoto: boolean,
   audioAvailability: Record<string, boolean> = {},
 ): ProtectedBirthdayContent {
   return {
     recipientName: 'Rithika (Lily)',
     heroHeading: 'Happy 20th Birthday, Lily!',
     heroSubheading:
-      'A little corner of the internet for Rithika, my Lily—made with lots of love, memories and appreciation for you.',
+      'A little corner of the internet for Rithika, my Lily—made with lots of warmth, memories, and appreciation for you.',
     giftMessage:
       'Surprise, Rithika! Someone has made a little world just for you. Welcome to your 20th birthday surprise!',
     timeline: [
@@ -27,7 +26,7 @@ export function getProtectedContent(
         eraLabel: '10th Standard · In Real Life',
         title: 'The First Impression',
         story:
-          'It was not until 10th standard that we met in real life, and my first impression of you was set. Back then, I was highly inquisitive and talked endlessly, while you were incredibly quiet, usually replying with just a single word.',
+          'It wasn’t until 10th standard that we met in real life, and my first impression of you was set. Back then, I was highly inquisitive and talked endlessly, while you were incredibly quiet, usually replying with just a single word.',
         motif: 'desk',
       },
       {
@@ -51,17 +50,17 @@ export function getProtectedContent(
       {
         id: 'nakshatras',
         index: '05',
-        eraLabel: 'Chitra & Vishakha · INFJ & INFP',
-        title: 'Natural Counterparts',
+        eraLabel: 'Natural Balance',
+        title: 'Chitra & Vishakha',
         story:
-          'Our connection is perfectly balanced, much like our Nakshatras. With your Nakshatra being Chitra and mine being Vishakha, we are natural counterparts, sharing the exact same animal symbol.',
+          'Our connection feels naturally balanced, much like our Nakshatras—Chitra and Vishakha—making us natural counterparts who even share the exact same animal symbol.',
         motif: 'stars',
       },
       {
         id: 'personal-feelings',
         index: '06',
         eraLabel: 'The Temple of Learning',
-        title: 'Sharing Our Most Personal Feelings',
+        title: 'Sharing Our Personal Feelings',
         story:
           'Over time, we evolved from sharing intellectual thoughts to sharing our most personal feelings. I will never forget how much you appreciated my quote: "I want a place near the God at the temple of learning"—where "God" secretly meant my person.',
         motif: 'philosophy',
@@ -69,10 +68,10 @@ export function getProtectedContent(
       {
         id: 'rajism-2025',
         index: '07',
-        eraLabel: '2025 · The Unforgettable Coincidence',
+        eraLabel: '2025 · Shared Coincidence',
         title: 'Discovering "Rajism"',
         story:
-          'Then came 2025, the year we discovered "Rajism." We both loved people who shared the exact same date of birth, and both of their names contained the word "Raj." Even though neither of those people is in our lives right now, that shared experience became uniquely ours.',
+          'Then came 2025, the year we discovered "Rajism"—when we realized we both loved people sharing the exact same date of birth whose names both contained "Raj." Even though neither is in our lives right now, that memory became uniquely ours.',
         motif: 'coincidence',
       },
       {
@@ -81,7 +80,7 @@ export function getProtectedContent(
         eraLabel: 'After School',
         title: 'Our One Meetup',
         story:
-          'Meeting after school at the temple. Only one meetup outside, yet one that left a warm, lasting memory alongside every conversation we have ever shared.',
+          'Meeting after school at the temple—only one meetup outside, yet a quiet, lasting memory kept close.',
         motif: 'temple',
       },
       {
@@ -90,90 +89,80 @@ export function getProtectedContent(
         eraLabel: 'Today · Turning 20',
         title: 'Rithika, My Lily',
         story:
-          'Today, there is absolutely nothing I wouldn’t share with you. You are Rithika, my Lily—and I am so excited for everything ahead, especially next year.',
+          'Today, there is absolutely nothing I wouldn’t share with you. Happy 20th birthday—and I cannot wait for next year.',
         motif: 'horizon',
       },
     ],
-    polaroid: {
-      title: 'One Picture. A Thousand Little Memories.',
-      caption:
-        "Maybe we don't have hundreds of pictures together, but this one holds a special place in my little collection of memories.",
-      storyTitle: 'Behind This Frame',
-      storyText:
-        'From a fleeting glance in a 9th-standard online class to 10th-standard single-word replies, from 11th and 12th standard deep conversations to 2025’s Rajism—this single treasured photograph holds years of friendship inside one frame.',
-      dateNote: 'Kept safely for Rithika (Lily) · 20th Birthday Archive',
-      hasPhoto,
-    },
     awards: [
       {
         id: 1,
         title: 'The Walking Encyclopedia Award',
-        category: 'Intellect & Trivia',
+        category: 'Sharp Mind',
         explanation:
-          'Awarded for casually knowing things most people have to search twice—and explaining them with calm effortless clarity.',
+          'Awarded for casually knowing things most people have to look up twice—and explaining them effortlessly.',
       },
       {
         id: 2,
         title: 'The English Literature Champion Award',
         category: 'Academic Legend',
         explanation:
-          'For finishing English textbooks and stories long before the teacher even finished the portions.',
+          'For finishing English textbooks and stories weeks before the syllabus ever caught up.',
       },
       {
         id: 3,
         title: 'The Certified Bookworm Award',
         category: 'Lifetime Reader',
         explanation:
-          'Recognising an unmatched love for English books, quiet pages, and thoughtful storytelling.',
+          'Recognising an unmatched love for quiet pages, good stories, and always reading ahead.',
       },
       {
         id: 4,
         title: 'The Philosophy Department Head Award',
-        category: '11th & 12th Std Talks',
+        category: 'Deep Talks',
         explanation:
-          'For turning 11th and 12th standard into unforgettable seminars on psychology, life, and Stoicism.',
+          'For turning ordinary school afternoons into thoughtful seminars on life, psychology, and Stoicism.',
       },
       {
         id: 5,
         title: 'The Most Intellectual Human Award',
         category: 'Honors Distinction',
         explanation:
-          'For evolving effortlessly from one-word 10th-standard replies to the sharpest, deepest mind in every conversation.',
+          'From one-word answers in 10th standard to the sharpest mind in every conversation since.',
       },
       {
         id: 6,
-        title: 'The INFJ Queen Award',
-        category: 'Chitra Counterpart',
+        title: 'The Quiet Intuition Award',
+        category: 'Rare Insight',
         explanation:
-          'Official recognition for rare INFJ intuition and Chitra Nakshatra balance—the natural counterpart to Vishakha.',
+          'Official recognition for perceptive intuition, calm wisdom, and understanding people without needing long explanations.',
       },
       {
         id: 7,
         title: 'The Rajism Co-Founder Award',
         category: 'Class of 2025',
         explanation:
-          'Awarded for co-discovering Rajism in 2025 after realizing both of our people shared the exact same birthday and the name "Raj."',
+          'For co-authoring the greatest accidental theory of 2025 over one unbelievable coincidence.',
       },
       {
         id: 8,
         title: 'The Future Model Award',
         category: 'Grace & Poise',
         explanation:
-          'Celebrating your natural poise, care for yourself, and effortless presence.',
+          'Celebrating your natural poise, self-care, and effortless presence.',
       },
       {
         id: 9,
         title: 'The Most Irreplaceable Friend Award',
-        category: 'Rithika, My Lily',
+        category: 'True Friendship',
         explanation:
-          'Because today, there is genuinely nothing I wouldn’t share with you.',
+          'Through quiet phases and busy seasons, nobody else could ever occupy the space you hold.',
       },
       {
         id: 10,
         title: 'The Lifetime Friendship Award',
         category: 'Permanent Distinction',
         explanation:
-          'Valid from a 9th-standard online class through turning 20 and every year still to come.',
+          'No expiration date—from school benches to turning twenty and everything waiting ahead.',
       },
     ],
     conversation: {
@@ -181,7 +170,7 @@ export function getProtectedContent(
       disclaimer:
         'A recreation of the 2025 "Rajism" realization moment between Nirupa and Rithika.',
       contactName: 'Rithika (Lily)',
-      contactSubtitle: 'Chitra · INFJ · Rajism Co-Founder',
+      contactSubtitle: 'Bookworm & Best Friend',
       stageNote: '(Both left in complete shock)',
       messages: [
         {
@@ -212,9 +201,9 @@ export function getProtectedContent(
       replyOptions: [
         {
           id: 'r1',
-          lilyText: 'And that is officially how Rajism was born in 2025.',
+          lilyText: 'And that is officially how Rajism was born.',
           friendResponse:
-            'Out of every coincidence in the universe, two Rajs with the exact same birthday was peak comedy and destiny.',
+            'Out of every coincidence in the universe, two Rajs with the exact same birthday was pure destiny.',
         },
         {
           id: 'r2',
@@ -226,17 +215,17 @@ export function getProtectedContent(
     },
     timeCapsule: {
       title: 'A Little Time Capsule From Our School Days',
-      salutation: 'Dear Rithika (my Lily),',
+      salutation: 'Dear Rithika,',
       paragraphs: [
-        'If someone had told me during that fleeting glance in our 9th-standard online class—or back in 10th standard when I talked endlessly and you replied with a single word—that we would become this close, I probably wouldn’t have believed them.',
-        'Everything changed in 11th standard when you started reciprocating, opening the door to two years of deep intellectual conversations, psychology, Stoicism, Chitra & Vishakha, and eventually 2025’s Rajism.',
-        'I still remember how much you appreciated my line, "I want a place near the God at the temple of learning." Today, there is truly nothing I wouldn’t share with you.',
+        'Back when I talked endlessly and you answered with a single word, I never could have guessed how effortlessly close we would become.',
+        'Looking back at every quiet afternoon, every shared book, and every honest secret we traded along the way, those school days will always hold a special place for me.',
+        'Keep this little note tucked safely away: no matter how fast our twenties move, I am endlessly grateful that our paths crossed.',
       ],
-      signOff: 'Always your friend, Nirupa (INFP, Vishakha)',
+      signOff: 'Always your friend, Nirupa',
     },
     quiz: {
       title: 'How Well Do You Remember Us?',
-      subtitle: 'Seven quick memories from 9th standard all the way to 2025.',
+      subtitle: 'Seven quick memories from school days to 2025.',
       questions: [
         {
           id: 'q1',
@@ -249,9 +238,9 @@ export function getProtectedContent(
           ],
           correctAnswer: '9th-standard online class',
           feedbackCorrect:
-            'Yes! Just a fleeting glance during a 9th-standard online class—before we even met in person in 10th.',
+            'Spot on—just a fleeting glance in that 9th-standard online class!',
           feedbackWrong:
-            'It actually goes all the way back to a 9th-standard online class—before we met in real life in 10th standard!',
+            'It actually goes back to a 9th-standard online class, before we met in person in 10th.',
         },
         {
           id: 'q2',
@@ -264,49 +253,54 @@ export function getProtectedContent(
           ],
           correctAnswer: 'With a single word',
           feedbackCorrect:
-            'Incredibly quiet and usually just one word—until 11th standard when everything shifted!',
+            'Incredibly quiet and usually just one word—until 11th standard changed everything!',
           feedbackWrong:
-            'Usually just a single word while I talked endlessly—until 11th standard when our friendship blossomed!',
+            'Usually just a single word while I talked endlessly!',
         },
         {
           id: 'q3',
+          question: 'What did you always finish long before the teacher completed the portions?',
+          options: ['English books', 'Physics manuals', 'Bus timetables', 'Art journals'],
+          correctAnswer: 'English books',
+          feedbackCorrect:
+            'Every single time—you read through those English stories weeks ahead of class.',
+          feedbackWrong:
+            'It was English books! You always read ahead simply because you loved the stories.',
+        },
+        {
+          id: 'q4',
           question: 'What philosophy did we love discussing in 11th and 12th standard?',
           options: ['Stoicism', 'Nihilism', 'Hedonism', 'Minimalism'],
           correctAnswer: 'Stoicism',
           feedbackCorrect:
-            'Yes—deep intellectual talks on Stoicism, psychology, and how minds work.',
+            'Yes—deep talks on Stoicism, psychology, and calm perspective.',
           feedbackWrong:
-            'It was Stoicism—right alongside psychology and all our deep 11th and 12th standard talks.',
-        },
-        {
-          id: 'q4',
-          question: 'What was our 2025 coincidence theory called?',
-          options: ['Rajism', 'Lilysm', 'Chitraism', 'Chapterism'],
-          correctAnswer: 'Rajism',
-          feedbackCorrect:
-            'Rajism! Two people named Raj sharing the exact same date of birth.',
-          feedbackWrong:
-            'Rajism—discovered in 2025 over the exact same birthday and the name Raj!',
+            'That one was Stoicism—right alongside psychology.',
         },
         {
           id: 'q5',
-          question: 'Which Nakshatra is yours (sharing the same animal symbol as mine)?',
-          options: ['Chitra', 'Rohini', 'Ashwini', 'Revati'],
-          correctAnswer: 'Chitra',
+          question: 'What was our 2025 shared-birthday theory called?',
+          options: ['Rajism', 'Lilysm', 'Chitraism', 'Chapterism'],
+          correctAnswer: 'Rajism',
           feedbackCorrect:
-            'Chitra—the natural counterpart to Vishakha, sharing the exact same animal symbol.',
+            'Rajism! Born on the spot in 2025.',
           feedbackWrong:
-            'Yours is Chitra, balanced perfectly with my Vishakha!',
+            'It was Rajism—co-founded over 6 Sept 1990!',
         },
         {
           id: 'q6',
-          question: 'What are our personality types (yours and mine)?',
-          options: ['INFJ & INFP', 'ESTJ & ENTP', 'ISTJ & ESFP', 'INTJ & ENFJ'],
-          correctAnswer: 'INFJ & INFP',
+          question: 'Which pair are our Nakshatras (sharing the same animal symbol)?',
+          options: [
+            'Chitra & Vishakha',
+            'Rohini & Ashwini',
+            'Revati & Bharani',
+            'Swati & Magha',
+          ],
+          correctAnswer: 'Chitra & Vishakha',
           feedbackCorrect:
-            'INFJ (you) and INFP (me)—quiet, intuitive counterparts.',
+            'Chitra and Vishakha—natural counterparts!',
           feedbackWrong:
-            'INFJ and INFP—which explains why our conversations always felt so deeply balanced.',
+            'Ours are Chitra and Vishakha—sharing the exact same animal symbol.',
         },
         {
           id: 'q7',
@@ -314,13 +308,13 @@ export function getProtectedContent(
           options: ['Temple', 'Shopping mall', 'Railway station', 'Ice cream parlour'],
           correctAnswer: 'Temple',
           feedbackCorrect:
-            'At the temple after school—quiet, peaceful, and forever remembered.',
+            'At the temple after school—peaceful and unforgettable.',
           feedbackWrong:
-            'It was at the temple after school—just one meetup, yet unforgettable.',
+            'It was at the temple after school.',
         },
       ],
       closingMessage:
-        'Whether you scored 7 out of 7 or smiled through every question, from 9th standard to 2025, every single detail of us is precious to me.',
+        'Whether you scored 7 out of 7 or smiled your way through, every single one of these memories means the world to me.',
     },
     playlist: {
       title: 'A Soundtrack for a Special Tree',
@@ -359,7 +353,7 @@ export function getProtectedContent(
     universe: {
       title: "In a Universe Full of People, I'm Glad I Met You.",
       subtitle:
-        'Click any star in Lily’s sky to read a note kept especially for your 20th birthday.',
+        'Click any star in Lily’s sky to read a wish kept especially for your 20th birthday.',
       messages: [
         {
           id: 'u1',
@@ -369,27 +363,27 @@ export function getProtectedContent(
         },
         {
           id: 'u2',
-          constellation: 'Chitra & Vishakha',
-          message: 'Natural counterparts in every quiet way.',
-          note: 'Sharing the exact same animal symbol—balanced from school days onward.',
+          constellation: 'Quiet Strength',
+          message: 'Never stop being curious.',
+          note: 'The world gets richer every time you ask a thoughtful question.',
         },
         {
           id: 'u3',
           constellation: 'Pages & Growth',
           message: 'Keep reading, growing and becoming.',
-          note: 'From finishing English stories early to building your whole future.',
+          note: 'From finishing novels early to building a future you love.',
         },
         {
           id: 'u4',
           constellation: 'Ambition',
           message: "You deserve every beautiful thing you're working towards.",
-          note: 'Your discipline, self-care, and quiet focus will take you everywhere you wish to go.',
+          note: 'Your discipline, self-care, and quiet focus will carry you far.',
         },
         {
           id: 'u5',
-          constellation: 'Rithika, My Lily',
-          message: 'There is absolutely nothing I wouldn’t share with you.',
-          note: 'Health for you, wellbeing for your family, and peaceful days ahead.',
+          constellation: 'Gratitude',
+          message: 'I hope life gives you countless reasons to smile.',
+          note: 'Good health for you, peace for your family, and bright days ahead.',
         },
       ],
     },
@@ -399,16 +393,16 @@ export function getProtectedContent(
       mainHeadline: 'BREAKING NEWS! LOCAL BOOKWORM TURNS 20!',
       subHeadline: 'Experts confirm: intelligence levels continue to rise.',
       leadBody: [
-        'Archives from 9th-standard online classes through 11th and 12th standard confirm that Rithika—affectionately known as Lily—has evolved from offering single-word replies in 10th standard to delivering some of the sharpest philosophical and psychological discussions on record.',
-        'Observers recall her unmatched streak of finishing English literature books ahead of schedule, as well as her appreciation for the famous campus quote: "I want a place near the God at the temple of learning."',
+        'Local sources confirm that Rithika—known fondly as Lily—officially enters her twenties today with an unbeaten track record of finishing English literature books long before anyone else.',
+        'Close friends note that while she once communicated primarily in single-word replies, she has since become one of the sharpest, most thoughtful conversationalists in town.',
       ],
-      specialReportTitle: 'SPECIAL REPORT: RAJISM DISCOVERED IN 2025.',
+      specialReportTitle: 'SPECIAL REPORT: RAJISM ARCHIVES SEALED.',
       specialReportBody:
-        'Investigative desks confirm that in 2025, Nirupa and Rithika uncovered an extraordinary shared coincidence: two people named Raj sharing the exact same date of birth. Though neither Raj remains in their lives today, Rajism endures as a permanent cultural landmark.',
+        'In a shocking 2025 investigation, Nirupa and Rithika uncovered two separate individuals named Raj sharing the exact birthday of 6 Sept 1990. Though neither remains on the roster today, Rajism retains permanent historical status.',
       personOfYear: {
         name: 'Rithika "Lily" (20 Today)',
         citation:
-          'Honoured unanimously for Chitra-Vishakha balance, unmatched composure, INFJ intuition, and being an irreplaceable friend.',
+          'Honoured unanimously for unmatched composure, sharp intellect, and being an irreplaceable friend.',
       },
       anticipatedEvent: {
         title: 'Next Year’s Anticipated Reunion',
@@ -422,11 +416,11 @@ export function getProtectedContent(
       ],
       horoscope: {
         disclaimer: 'Entertainment Horoscope · Written Purely for Fun',
-        lilySign: 'Chitra · INFJ Forecast',
+        lilySign: '20th Year Cosmic Forecast',
         lilyForecast:
-          'Year 20 brings sharp clarity, rewarding hard work, effortless grace, and the unwavering loyalty of your Vishakha counterpart.',
+          'Year 20 brings sharp clarity, rewarding hard work, effortless grace, and plenty of reasons to laugh.',
         friendNote:
-          'Vishakha · INFP Cross-Reference: Same animal symbol, same wavelength, celebrating twenty properly.',
+          'Editorial Note: The stars strongly advise celebrating twenty properly with good music and cake.',
       },
     },
     letter: {
@@ -458,15 +452,15 @@ export function getProtectedContent(
           kicker: 'Chapter Three · Psychology, Stoicism & Rajism',
           paragraphs: [
             'Over time, we evolved from sharing intellectual thoughts—psychology, philosophy, and Stoicism—to sharing our most personal feelings. I will never forget how much you appreciated my quote: "I want a place near the God at the temple of learning"—where "God" secretly meant my person.',
-            'Then came 2025, the year we discovered "Rajism." The secret behind it was a coincidence almost too strange to believe: we both loved people who shared the exact same date of birth, and both of their names contained the word "Raj." Even though neither of those people is in our lives right now, that shared experience became uniquely ours.',
+            'Then came 2025, the year we discovered "Rajism." The secret behind it was a coincidence almost too strange to believe: we both loved people who shared the exact same date of birth, 6 Sept 1990, and both of their names contained "Raj." Even though neither of those people is in our lives right now, that shared experience became uniquely ours.',
           ],
         },
         {
           number: 4,
           title: 'Natural Counterparts',
-          kicker: 'Chapter Four · Chitra, Vishakha, INFJ & INFP',
+          kicker: 'Chapter Four · Understanding Each Other',
           paragraphs: [
-            'Our connection feels perfectly balanced, much like our Nakshatras. With your Nakshatra being Chitra and mine being Vishakha, we are natural counterparts, sharing the exact same animal symbol.',
+            'Our connection feels perfectly balanced, much like our Nakshatras. With yours being Chitra and mine being Vishakha, we are natural counterparts, sharing the exact same animal symbol.',
             'Paired with you being an INFJ and me being an INFP, it makes complete sense why we understand each other with so little explaining. Today, there is absolutely nothing I wouldn’t share with you. You are Rithika, my Lily.',
           ],
         },

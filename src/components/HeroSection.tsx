@@ -23,7 +23,7 @@ export function HeroSection({ heading, subheading }: HeroSectionProps) {
       className="paper-grain relative overflow-hidden border-b border-[#E8C2D4]/70 bg-gradient-to-b from-[#FCE7F0]/75 via-[#FFF6EF] to-[#FFF6EF] px-4 pt-14 pb-16 sm:px-6 sm:pt-20 sm:pb-24"
     >
       <AmbientFloaters />
-      <ConfettiBurst key={confettiCount} active={confettiCount > 0} />
+      <ConfettiBurst active={confettiCount > 0} burstKey={confettiCount} />
 
       <div className="relative z-10 mx-auto max-w-5xl">
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
@@ -89,13 +89,13 @@ export function HeroSection({ heading, subheading }: HeroSectionProps) {
 
         {/* Quiet unboxed chapter summary line */}
         <div className="mt-12 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 border-t border-[#E8C2D4]/60 pt-6 text-xs text-[#6E4A5D] lg:justify-start">
-          <span>10th Std Online Class</span>
+          <span>The Story of Us</span>
           <span aria-hidden="true">·</span>
-          <span>12th Std Memories</span>
+          <span>Official Lily Awards</span>
           <span aria-hidden="true">·</span>
-          <span>Psychology &amp; Stoicism</span>
+          <span>Time Capsule</span>
           <span aria-hidden="true">·</span>
-          <span>INFJ &amp; INFP</span>
+          <span>Soundtrack</span>
           <span aria-hidden="true">·</span>
           <span>Seven-Chapter Letter</span>
         </div>
