@@ -3,7 +3,7 @@ import type { NextFunction, Request, Response } from 'express';
 
 const DEFAULT_BIRTHDAY_SALT = 'lily_20th_world_salt_2026';
 const DEFAULT_BIRTHDAY_HASH =
-  '51709674cefcfa72bc582d2e310bb72fa999db9247a5a1ff80c57bb6f2690e3b982e239b50c6551c766e374456e8546eeba1aa23a64bf66292d6ee3a84fd305c';
+  'f75031ab3a08e858d58ca8bed75aceb1c38b394e4832b1a7394e5611f5af607c3a416bdce18135158dd32ff5a8386474bf44f1c095a70715946771247c08e661';
 
 const SESSION_COOKIE_NAME = 'lily_world_session';
 const SESSION_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours

@@ -22,6 +22,6 @@ This project is preconfigured for one-click deployment to [Render](https://rende
 
 ## 3. Privacy & Security Notes
 
-- The birthday date (`18-06-2006`) is verified on the server via a salted `scrypt` hash (`server/auth.ts`) and never included in client-side JavaScript.
+- The birthday date (`18-11-2006`) is verified on the server via a salted `scrypt` hash (`server/auth.ts`) and never included in client-side JavaScript.
 - Wrong attempts trigger a temporary server-side rate-limit cooldown.
 - Search engine indexing is blocked via `<meta name="robots" content="noindex, nofollow" />`, `X-Robots-Tag`, and `/robots.txt`.

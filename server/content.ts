@@ -404,7 +404,7 @@ export function getProtectedContent(hasPhoto: boolean): ProtectedBirthdayContent
     },
     newspaper: {
       masthead: 'THE LILY TIMES',
-      editionLine: 'BIRTHDAY SPECIAL EDITION · VOL. XX · EST. 18 JUNE 2006 · 20TH YEAR',
+      editionLine: 'BIRTHDAY SPECIAL EDITION · VOL. XX · EST. 18 NOVEMBER 2006 · 20TH YEAR',
       mainHeadline: 'BREAKING NEWS! LOCAL BOOKWORM TURNS 20!',
       subHeadline: 'Experts confirm: intelligence levels continue to rise.',
       leadBody: [

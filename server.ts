@@ -112,7 +112,7 @@ async function startServer(): Promise<void> {
         res.status(429).json({
           ok: false,
           cooldownRemaining: cooldownSeconds,
-          message: `Hmm, let's pause for ${cooldownSeconds}s before trying again. Hint: June 2006 ✨`,
+          message: `Hmm, let's pause for ${cooldownSeconds}s before trying again. Hint: November 2006 ✨`,
         });
         return;
       }
@@ -123,7 +123,7 @@ async function startServer(): Promise<void> {
         cooldownRemaining: 0,
         message:
           attemptsRemaining <= 2
-            ? `Not quite that date! Think of a summer birthday in June (${attemptsRemaining} ${attemptsRemaining === 1 ? 'try' : 'tries'} left before a short pause).`
+            ? `Not quite that date! Think of a November birthday (${attemptsRemaining} ${attemptsRemaining === 1 ? 'try' : 'tries'} left before a short pause).`
             : "Hmm, not quite that date! Pick Lily's birthday to open this little world.",
       });
       return;

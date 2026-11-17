@@ -37,7 +37,7 @@ export function HeroSection({ heading, subheading }: HeroSectionProps) {
             <div className="mb-4 flex items-center justify-center gap-3 lg:justify-start">
               <CoquetteBow className="h-7 w-12" />
               <span className="text-xs font-medium tracking-widest text-[#9C6580] uppercase">
-                Twentieth Year Scrapbook · June 18
+                Twentieth Year Scrapbook · November 18
               </span>
             </div>
 
